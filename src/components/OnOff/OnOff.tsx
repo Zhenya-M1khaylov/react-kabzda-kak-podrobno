@@ -1,29 +1,32 @@
 import React from 'react';
 
-export type OnOffPropsType = {
-    on: boolean
-    onChange: (on: boolean) => void
+type PropsType = {
+    switchOn: boolean
+    setSwitchOn: (switchOn: boolean) => void
 }
 
-export const OnOff = (props: OnOffPropsType) => {
+export function OnOff(props: PropsType) {
+    console.log('OnOff rendering')
 
+    console.log('on: ' + props.switchOn)
 
     const onStyle = {
         width: '30px',
         height: '20px',
         border: '1px solid black',
         display: 'inline-block',
+        marginLeft: '5px',
         padding: '2px',
-        backgroundColor: props.on ? 'green' : 'white'
+        backgroundColor: props.switchOn ? 'green' : 'white',
     }
     const offStyle = {
         width: '30px',
         height: '20px',
         border: '1px solid black',
         display: 'inline-block',
-        marginLeft: '2px',
+        marginLeft: '5px',
         padding: '2px',
-        backgroundColor: props.on ? 'white' : 'red'
+        backgroundColor: props.switchOn ? 'white' : 'red',
     }
     const indicatorStyle = {
         width: '10px',
@@ -31,17 +34,23 @@ export const OnOff = (props: OnOffPropsType) => {
         borderRadius: '5px',
         border: '1px solid black',
         display: 'inline-block',
-        marginLeft: '5px',
-        backgroundColor: props.on ? 'green' : 'red'
-
+        marginLeft: '10px',
+        backgroundColor: props.switchOn ? 'green' : 'red',
     }
-
 
     return (
         <div>
-            <div style={onStyle} onClick={()=>{props.onChange(true)}}>On</div>
-            <div style={offStyle} onClick={()=>{props.onChange(false)}}>Off</div>
+            <div style={onStyle}
+                 onClick={() => {
+                     props.setSwitchOn(true)
+                 }}>On
+            </div>
+            <div style={offStyle}
+                 onClick={() => {
+                     props.setSwitchOn(false)
+                 }}>Off
+            </div>
             <div style={indicatorStyle}></div>
         </div>
-    );
+    )
 };

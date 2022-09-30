@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
-import { action } from '@storybook/addon-actions';
-import UncontrolledAccordion from './UncontrolledAccordion';
+
+import {UncontrolledAccordion } from './UncontrolledAccordion';
 
 
 export default {
-    title: 'UncontrolledAccordion stories',
-    component: UncontrolledAccordion
-};
+    title: 'UncontrolledAccordion',
+    component: UncontrolledAccordion,
+}
 
-const callback = action('accordion mode change event fired')
 
-export const ModeChanging = () => {
-    return <UncontrolledAccordion titleValue={'Menu'} />;
-};
+
+
+export const CollapsedOFF = () => <UncontrolledAccordion titleValue={'x'}/>

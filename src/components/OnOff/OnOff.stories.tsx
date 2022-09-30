@@ -1,16 +1,21 @@
 import React, {useState} from 'react';
-import { action } from '@storybook/addon-actions';
+import {action} from "@storybook/addon-actions";
+
 import {OnOff} from './OnOff';
 
+
 export default {
-    title: 'OnOff stories',
-    component: OnOff
-};
+    title: 'OnOff',
+    component: OnOff,
+}
 
-export const OnMode = () => <OnOff on={true} onChange={action('on or off clicked')} />;
-export const OffMode = () => <OnOff on={false} onChange={action('on or off clicked')} />;
+const callback = action("on or off clicked")
 
-export const OnOffChanging = () => {
+export const OnMode = () => <OnOff switchOn={true} setSwitchOn={callback} />
+export const OffMode = () => <OnOff switchOn={false} setSwitchOn={callback}/>
+
+
+export const RatingChanging = () => {
     const [value, setValue] = useState<boolean>(true)
-    return <OnOff on={value} onChange={setValue} />
-};
+    return <OnOff switchOn={value} setSwitchOn={setValue}/>
+}

@@ -1,30 +1,35 @@
 import React, {useState} from 'react';
 
-export type OnOffPropsType = {
+type PropsType = {
+    // on: boolean
     onChange: (on: boolean) => void
     defaultOn?: boolean
 }
 
-const UncontrolledOnOff = (props: OnOffPropsType) => {
+export function UncontrolledOnOff(props: PropsType) {
+    console.log('UncontrolledOnOff rendering')
 
     let [on, setOn] = useState(props.defaultOn ? props.defaultOn : false)
+
+    console.log('on: ' + on)
 
     const onStyle = {
         width: '30px',
         height: '20px',
         border: '1px solid black',
         display: 'inline-block',
+        marginLeft: '5px',
         padding: '2px',
-        backgroundColor: on ? 'green' : 'white'
+        backgroundColor: on ? 'green' : 'white',
     }
     const offStyle = {
         width: '30px',
         height: '20px',
         border: '1px solid black',
         display: 'inline-block',
-        marginLeft: '2px',
+        marginLeft: '5px',
         padding: '2px',
-        backgroundColor: on ? 'white' : 'red'
+        backgroundColor: on ? 'white' : 'red',
     }
     const indicatorStyle = {
         width: '10px',
@@ -32,28 +37,26 @@ const UncontrolledOnOff = (props: OnOffPropsType) => {
         borderRadius: '5px',
         border: '1px solid black',
         display: 'inline-block',
-        marginLeft: '5px',
-        backgroundColor: on ? 'green' : 'red'
-
+        marginLeft: '10px',
+        backgroundColor: on ? 'green' : 'red',
     }
 
-const onClicked = () => {
-    setOn(true)
-    props.onChange(true)
-}
-const offClicked = () => {
-    setOn(false)
-    props.onChange(false)
-}
-
+    const onClicked = () => {
+        !on && setOn(true)
+        props.onChange(true)
+    }
+    const offClicked = () => {
+        on && setOn(false)
+        props.onChange(false)
+    }
 
     return (
         <div>
-            <div style={onStyle} onClick={onClicked}>On</div>
-            <div style={offStyle} onClick={offClicked}>Off</div>
+            <div style={onStyle} onClick={onClicked}>On
+            </div>
+            <div style={offStyle} onClick={offClicked}>Off
+            </div>
             <div style={indicatorStyle}></div>
         </div>
-    );
+    )
 };
-
-export default UncontrolledOnOff;
